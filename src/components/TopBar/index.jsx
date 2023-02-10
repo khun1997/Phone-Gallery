@@ -9,7 +9,9 @@ import {NavLink } from 'react-router-dom';
 const Top =styled.section`
     width:100%;
     height:5em;
-    background:red;
+    position:sticky;
+    background:#3f3b3b;
+    overflow:hidden;
     color:white;
     display:flex;
     flex-direction:row;
@@ -34,7 +36,7 @@ const Navbar=styled.div`
 
 const Button = styled.button`
     border:none;
-    background:red; 
+    background:#3f3b3b; 
     color:white;
     font-size:1em;
     cursor:pointer;

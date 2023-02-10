@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons';
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 
 
 const SearchBox =styled.section`
@@ -16,16 +16,17 @@ const Input =styled.input`
     display;block;
     align-item:center;
     margin-top:20px;
-    border:1px solid red;
+    border:1px solid #3f3b3b;
     border-radius:3px;
   
 `;
 const Button = styled.button`
-    background:red;
+    background:#3f3b3b;
+    color:white;
     width:40px;
     height:2.5em;
     margin:19px 1px;
-    border:1px solid red;
+    border:1px solid #3f3b3b;
     border-radius:3px;
 `;
 
@@ -35,7 +36,7 @@ const SearchBar = ()=>{
             
        
             <SearchBox>
-                <Input  placeholder="search"  />
+                <Input  placeholder="         Search"  />
                 <Button>
                     <FontAwesomeIcon icon={faMagnifyingGlass} size="lg" />
                 </Button>

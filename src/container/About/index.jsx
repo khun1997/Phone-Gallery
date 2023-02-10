@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import Topbar from "../../components/TopBar";
 
 
 const Text =styled.text`
@@ -13,9 +14,10 @@ const Text =styled.text`
 
 function About(){
     return(
-        
-        <Text>This is About page</Text>
-
+        <>
+            <Topbar/>
+            <Text>This is About page</Text>
+        </>
     )
 }
 export default About;

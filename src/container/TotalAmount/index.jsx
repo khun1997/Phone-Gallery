@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import Topbar from "../../components/TopBar";
 
 const Text =styled.text`
     font-size:3em;
@@ -12,7 +13,10 @@ const Text =styled.text`
 
 function TotalAmount(){
     return(
-        <Text>This is total amount page</Text>
+        <>
+            <Topbar/>
+            <Text>This is total amount page</Text>
+        </>
     )
 }
 export default TotalAmount;
