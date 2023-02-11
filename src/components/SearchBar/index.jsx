@@ -1,49 +1,44 @@
 import styled from "styled-components";
-import { faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+const SearchBox = styled.section`
+  width: 100%;
+  height: 6em;
+  display: flex;
+  justify-content: center;
 
-
-const SearchBox =styled.section`
-    width:100%;
-    height:3em;
-    display:flex;
-    justify-content:center;
 `;
-const Input =styled.input`
-    width:30em;
-    height:2em;
+const Input = styled.input`
+    width:40em;
+    height:3em;
     display;block;
     align-item:center;
     margin-top:20px;
-    border:1px solid #3f3b3b;
-    border-radius:3px;
-  
+    border:3px solid #3f3b3b;
+    border-radius:8px;
 `;
 const Button = styled.button`
-    background:#3f3b3b;
-    color:white;
-    width:40px;
-    height:2.5em;
-    margin:19px 1px;
-    border:1px solid #3f3b3b;
-    border-radius:3px;
+  background: #3f3b3b;
+  color: white;
+  width: 45px;
+  height: 3.6em;
+  margin: 19px 1px;
+  border: 3px solid #3f3b3b;
+  border-radius: 8px;
 `;
 
-const SearchBar = ()=>{
-    return(
-      
-            
-       
-            <SearchBox>
-                <Input  placeholder="         Search"  />
-                <Button>
-                    <FontAwesomeIcon icon={faMagnifyingGlass} size="lg" />
-                </Button>
-            </SearchBox>
-            
-
-    )
-}
+const SearchBar = () => {
+  return (
+    <div>
+      <SearchBox>
+        <Input placeholder="              Search"></Input>
+        <Button>
+          <FontAwesomeIcon icon={faMagnifyingGlass} size="lg" />
+        </Button>
+      </SearchBox>
+    </div>
+  );
+};
 
 export default SearchBar;
