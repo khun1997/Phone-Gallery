@@ -63,7 +63,7 @@
 
 import React from "react";
 import { useParams } from "react-router-dom";
-import { ProductContext } from "../../hooks/productContext";
+import { ProductContext } from "../../components/ProductContext/productContext";
 import { useContext } from "react";
 import styled from "styled-components";
 const DetailText = styled.text`
