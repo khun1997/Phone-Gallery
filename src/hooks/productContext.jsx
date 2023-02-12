@@ -16,12 +16,13 @@
 // export default  UseApiFetch;
 import React,{useState,useEffect,createContext} from "react"
 export const ProductContext = createContext();
+const url ='https://d3b3d23b-c5f1-4f6f-b95b-bcae1d1a4440.mock.pstmn.io';
 
  const ProductProvider =({children})=>{
     const [products,setProducts] = useState([]);
     useEffect(()=>{
         const FetchData = async () =>{
-            const response = await fetch('https://d3b3d23b-c5f1-4f6f-b95b-bcae1d1a4440.mock.pstmn.io');
+            const response = await fetch(url);
             const data = await response.json();
             setProducts(data);
             

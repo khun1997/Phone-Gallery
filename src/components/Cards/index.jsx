@@ -13,7 +13,7 @@ const Section = styled.section`
   
 `;
 const Card = styled.div`
-    margin:2em;
+    margin:1em;
     width:18em;
     height:23em;
     background-color:#3f3b3b;
@@ -22,9 +22,7 @@ const Card = styled.div`
     justify-content:center;
     align-content;center;
     position:relative;
-    
-
-    
+ 
 &:hover{
   box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
   transform: scale(1.08);
@@ -73,6 +71,7 @@ const Button = styled.button`
 function Cards(id) {
   const { products } = useContext(ProductContext);
 
+  // const navigate= useNavigate();
   return (
     <Section>
       {products.map((product) => (
@@ -83,11 +82,16 @@ function Cards(id) {
           </Text>
           <br></br>
           <Text1>{product.price}</Text1>
-          <Link to={`/product/:id`}>
+          <Link  to={`/product/${product.id}`}>
             
-              <Button><FontAwesomeIcon icon={faCircleInfo} size="2xl"/></Button>
+              <>
+              <Button  >
+               <FontAwesomeIcon  icon={faCircleInfo} size="2xl"/>
+              </Button>
+              </>
             
-          </Link>
+              </Link>
+          
         </Card>
       ))}
     </Section>
