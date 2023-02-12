@@ -8,13 +8,13 @@ import ProductDetail from './container/ProductDetail/index';
 // import ProjectDetail from './container/ProjectDetail/index';
 
 
-function App() {
+function App(id) {
   return (
     <div className="App">
         <Router>
           <Routes>
             <Route path='/' element={<Home/>}></Route>
-            <Route path='/product/:id' element={<ProductDetail/>}></Route>
+            <Route path={`/product/:id`} element={<ProductDetail/>}></Route>
             {/* <Route path='/about' element={<About/>}></Route>
             <Route path='/totalamount' element={<TotalAmount/>}></Route> */}
             {/* <Route path='/product/:id' element={<ProjectDetail/>}></Route> */}

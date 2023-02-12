@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleInfo} from '@fortawesome/free-solid-svg-icons';
@@ -22,13 +22,13 @@ const Card = styled.div`
     justify-content:center;
     align-content;center;
     position:relative;
+    
 
     
 &:hover{
   box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
   transform: scale(1.08);
   transition:0.8s;
-
 }
 `;
 
@@ -65,9 +65,12 @@ const Button = styled.button`
   top: 0;
   right:0;
   cursor:pointer;
+
+}
+  
   
 `;
-function Cards() {
+function Cards(id) {
   const { products } = useContext(ProductContext);
 
   return (
@@ -80,11 +83,11 @@ function Cards() {
           </Text>
           <br></br>
           <Text1>{product.price}</Text1>
-          <NavLink to="/product/:id">
+          <Link to={`/product/:id`}>
             
               <Button><FontAwesomeIcon icon={faCircleInfo} size="2xl"/></Button>
             
-          </NavLink>
+          </Link>
         </Card>
       ))}
     </Section>

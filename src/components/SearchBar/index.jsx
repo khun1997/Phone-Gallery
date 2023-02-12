@@ -26,6 +26,7 @@ const Button = styled.button`
   margin: 19px 1px;
   border: 3px solid #3f3b3b;
   border-radius: 8px;
+  cursor:pointer;
 `;
 
 const SearchBar = () => {

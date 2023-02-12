@@ -15,7 +15,7 @@
 // }
 // export default  UseApiFetch;
 import React,{useState,useEffect,createContext} from "react"
-export const ProductContext = React.createContext();
+export const ProductContext = createContext();
 
  const ProductProvider =({children})=>{
     const [products,setProducts] = useState([]);
