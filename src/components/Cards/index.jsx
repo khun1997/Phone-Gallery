@@ -1,16 +1,16 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleInfo} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleInfo } from "@fortawesome/free-solid-svg-icons";
 import React, { useContext } from "react";
-import { ProductContext } from "../ProductContext/productContext";
+import { ProductContext } from "../ProductContext/index";
 // import ProductProvider from "../../hooks/productContext";
 // import ProductProvider from "../../hooks/productContext";
+
 const Section = styled.section`
   display: flex;
   flex-wrap: wrap;
   margin: 2em;
-  
 `;
 const Card = styled.div`
     margin:1em;
@@ -18,7 +18,7 @@ const Card = styled.div`
     height:23em;
     background-color:#3f3b3b;
     border:1px solid #f5eded;
-    border-radius:12px;
+    border-radius:15px;
     justify-content:center;
     align-content;center;
     position:relative;
@@ -82,16 +82,13 @@ function Cards(id) {
           </Text>
           <br></br>
           <Text1>{product.price}</Text1>
-          <Link  to={`/product/${product.id}`}>
-            
-              <>
-              <Button  >
-               <FontAwesomeIcon  icon={faCircleInfo} size="2xl"/>
+          <Link to={`/product/${product.id}`}>
+            <>
+              <Button>
+                <FontAwesomeIcon icon={faCircleInfo} size="2xl" />
               </Button>
-              </>
-            
-              </Link>
-          
+            </>
+          </Link>
         </Card>
       ))}
     </Section>

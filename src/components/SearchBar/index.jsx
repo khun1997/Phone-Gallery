@@ -7,7 +7,6 @@ const SearchBox = styled.section`
   height: 6em;
   display: flex;
   justify-content: center;
-
 `;
 const Input = styled.input`
     width:40em;
@@ -33,7 +32,7 @@ const Button = styled.button`
   margin: 10px 1px;
   border: 3px solid #3f3b3b;
   border-radius: 8px;
-  cursor:pointer;
+  cursor: pointer;
 `;
 
 const SearchBar = () => {

@@ -6,7 +6,6 @@
 
 // const Product = ()=>{
 
-
 //     const [product ,setProduct] = useState([]);
 //     const [loading,setLoading] = useState(false);
 
@@ -63,135 +62,120 @@
 
 import React from "react";
 import { useParams } from "react-router-dom";
-import { ProductContext } from "../../components/ProductContext/productContext";
+import { ProductContext } from "../../components/ProductContext/index";
 import { useContext } from "react";
 import styled from "styled-components";
-const DetailText = styled.text`
-width:100%;
-height:2em;
-font-size:3em;
-margin-top:0.5em;
-background-color:#3f3b3b;
-color:white;
-border-top:1px solid #3f3b3b;
-  display:flex;
-  justify-content: center;
-  align-content: center;
+
+const HeadText = styled.text`
+  background-color: #3f3b3b;
+  width: 100%;
+  height: 9vh;
+  font-size: 50px;
+  color: white;
+  font-weight: bold;
+  display: flex;
   align-items: center;
+  justify-content: center;
 `;
 const Section = styled.section`
-  width: 100%;
-  height: 100vh;
-
+  background-color: #f6f0f0;
+  width:100%;
+  height:55em;
   display: flex;
-  flex-warp: warp;
-  justify-content: center;
-  align-content: center;
-  align-items: center;
-  gap: 6em;
-
+  /* flex-flow: wrap column; */
+  flex-direction:column;
+ justify-content:center;
+ align-items:center;
+ align-content:center;
 `;
-const Container = styled.div`
+const ProductContainer = styled.div`
+  /* background-color: blue; */
   display: flex;
-  margin-bottom:15em;
+  flex-flow: wrap ;
   justify-content:center;
   align-items:center;
   align-content:center;
-  border: 2px solid wheat;
-  padding:1em;
   
-`;
-const ImageContainer = styled.div`
-  width: 34em;
-  height: 34em;
-
-  border-radius: 10px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 `;
 const Image = styled.img`
-  width: 30em;
-  height: 30em;
+  background-color: green;
+  width: 500px;
+  height: 500px;
+  border:4px solid white;
+  border-radius:20px;
+
+
+  /* margin-left:10em; */
 `;
 const TextContainer = styled.div`
-  display: flex;
-  flex-flow: column;
-  justify-content:center;
-  gap:2em;
-  margin-right:8em;
-`;
-const Text = styled.text`
-width:10em;
-height:5em;
-
-font-size:3.5em;
-display:flex;
-justify-content:center;
-align-items:center;
-  font-weight: bold;
-  color:#3f3b3b;
-  
-  
-`;
-const Text1 = styled.text`
-  width:300px;
-  height:50px;
+  /* background-color: pink; */
+  width:500px;
+  height:300px;
   display:flex;
-  justify-content:center;
+  flex-direction:column;
   align-items:center;
-  color:white;
-  margin-bottom:em;
-  border:2px solid #3f3b3b;
-  border-radius:10px;
-  background-color: #3f3b3b;
 `;
-const Button = styled.button`
-  width: 8em;
-  height: 3em;
-  font-size: 20px;
-  font-weight:bold;
-  border: 4px solid #3f3b3b;
-  border-radius: 10px;
-  background-color: white;
-  color: #3f3b3b;
+const ProductName = styled.text`
+  /* background-color: yellow; */
+  font-size:60px;
+  margin-top:10px;
+  font-style:Sans-serif ;
+`;
 
-&:hover{
-  color:white;
-  background-color: #3f3b3b;
-}
+const ProductPrice = styled.text`
+  /* background-color: grey; */
+  font-size:30px;
+  margin-top:40px;
+`;
+
+const ProductSpecification = styled.text`
+  padding:10px;
+  margin:20px 0px;
+  font-style:italic;
+`;
+
+const Button = styled.button`
+  display: flex;
+  width:200px;
+  height:40px;
+  font-size:30px;
+  color: #3f3b3b;
+  justify-content:center;
+  border:3px solid  #3f3b3b;
+  border-radius:10px;
+
+  &:hover{
+    background-color: #3f3b3b;
+    color:white;
+  }
 `;
 function ProductDetail() {
- 
-  //call products from ProductContext by using useContext 
+  //call products from ProductContext by using useContext
   const { products } = useContext(ProductContext);
-  console.log(products)
-  const { id } =useParams();
-  console.log(id)
+  const { id } = useParams();
   const product = products.find((product) => product.id == id);
-  console.log(product)
-  // const { id,name,price,rom } = product;
-  
+  const { name, img, price, rom } = product;
 
   return (
     <>
-    <div><DetailText>Product Detail</DetailText></div>
+      <HeadText>Product Detail</HeadText>
       <Section>
-        <Container key={product.id}>
-          <ImageContainer>
-            <Image src={product.img} alt={product.name}></Image>
-          </ImageContainer>
+        <ProductContainer key={id}>
+          <Image src={img} alt={name}></Image>
           <TextContainer>
-            <Text>
-              {product.name}
-              <br />({product.rom})
-              <br />
-              <br/>
-            </Text>
-              <Text1> Price: {product.price} </Text1>
+            <ProductName>{name}</ProductName>
+            <ProductPrice>Price : {price}</ProductPrice>
+            <ProductSpecification>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima
+              ratione beatae ipsa ullam accusantium, debitis harum a cum sint in
+              fugit. Debitis 
+              orem ipsum dolor sit amet consectetur adipisicing elit. Minima
+              ratione beataeat, nulla dolore odit voluptatem earum facilis
+              voluptatibus.
+            </ProductSpecification>
             <Button>Buy</Button>
           </TextContainer>
-        </Container>
+        </ProductContainer>
       </Section>
     </>
   );
