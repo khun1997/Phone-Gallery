@@ -79,74 +79,72 @@ const HeadText = styled.text`
 `;
 const Section = styled.section`
   background-color: #f6f0f0;
-  width:100%;
-  height:55em;
+  width: 100%;
+  height: 55em;
   display: flex;
   /* flex-flow: wrap column; */
-  flex-direction:column;
- justify-content:center;
- align-items:center;
- align-content:center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
 `;
 const ProductContainer = styled.div`
   /* background-color: blue; */
   display: flex;
-  flex-flow: wrap ;
-  justify-content:center;
-  align-items:center;
-  align-content:center;
-  
+  flex-flow: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
 `;
 const Image = styled.img`
   background-color: green;
   width: 500px;
   height: 500px;
-  border:4px solid white;
-  border-radius:20px;
-
+  border: 4px solid white;
+  border-radius: 20px;
 
   /* margin-left:10em; */
 `;
 const TextContainer = styled.div`
   /* background-color: pink; */
-  width:500px;
-  height:300px;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
+  width: 500px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 const ProductName = styled.text`
   /* background-color: yellow; */
-  font-size:60px;
-  margin-top:10px;
-  font-style:Sans-serif ;
+  font-size: 60px;
+  margin-top: 10px;
+  font-style: Sans-serif;
 `;
 
 const ProductPrice = styled.text`
   /* background-color: grey; */
-  font-size:30px;
-  margin-top:40px;
+  font-size: 30px;
+  margin-top: 40px;
 `;
 
 const ProductSpecification = styled.text`
-  padding:10px;
-  margin:20px 0px;
-  font-style:italic;
+  padding: 10px;
+  margin: 20px 0px;
+  font-style: italic;
 `;
 
 const Button = styled.button`
   display: flex;
-  width:200px;
-  height:40px;
-  font-size:30px;
+  width: 200px;
+  height: 40px;
+  font-size: 30px;
   color: #3f3b3b;
-  justify-content:center;
-  border:3px solid  #3f3b3b;
-  border-radius:10px;
+  justify-content: center;
+  border: 3px solid #3f3b3b;
+  border-radius: 10px;
 
-  &:hover{
+  &:hover {
     background-color: #3f3b3b;
-    color:white;
+    color: white;
   }
 `;
 function ProductDetail() {
@@ -168,10 +166,9 @@ function ProductDetail() {
             <ProductSpecification>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima
               ratione beatae ipsa ullam accusantium, debitis harum a cum sint in
-              fugit. Debitis 
-              orem ipsum dolor sit amet consectetur adipisicing elit. Minima
-              ratione beataeat, nulla dolore odit voluptatem earum facilis
-              voluptatibus.
+              fugit. Debitis orem ipsum dolor sit amet consectetur adipisicing
+              elit. Minima ratione beataeat, nulla dolore odit voluptatem earum
+              facilis voluptatibus.
             </ProductSpecification>
             <Button>Buy</Button>
           </TextContainer>
