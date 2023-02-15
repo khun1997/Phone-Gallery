@@ -2,10 +2,8 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleInfo } from "@fortawesome/free-solid-svg-icons";
-import React, { useContext } from "react";
-import { ProductContext } from "../ProductContext/index";
-// import ProductProvider from "../../hooks/productContext";
-// import ProductProvider from "../../hooks/productContext";
+import React from "react";
+import useMockApiData from "../../customHooks/useMockApiData";
 
 const Section = styled.section`
   display: flex;
@@ -56,22 +54,20 @@ const Text1 = styled.text`
 `;
 
 const Button = styled.button`
-  border:none;
-  color:#3f3b3b;
+  border: none;
+  color: #3f3b3b;
   position: absolute;
-  background-color:white;
+  background-color: white;
   top: 0;
-  right:0;
-  cursor:pointer;
-
-}
-  
-  
+  right: 0;
+  cursor: pointer;
 `;
-function Cards(id) {
-  const { products } = useContext(ProductContext);
+function Cards() {
+ 
+  const  products  = useMockApiData();
+  
+  console.log(products)
 
-  // const navigate= useNavigate();
   return (
     <Section>
       {products.map((product) => (
@@ -91,7 +87,9 @@ function Cards(id) {
           </Link>
         </Card>
       ))}
+      
     </Section>
+    
   );
 }
 export default Cards;

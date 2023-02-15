@@ -6,7 +6,7 @@ import ProductDetail from "./container/ProductDetail/index";
 // import TotalAmount from './container/TotalAmount/index';
 // import ProjectDetail from './container/ProjectDetail/index';
 
-function App(product) {
+function App() {
   return (
     <div className="App">
       <Router>
