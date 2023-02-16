@@ -19,17 +19,17 @@
 // export default Home;
 
 import React from "react";
-// import {ProductContext} from '../../hooks/productContext'
 import Topbar from "../../components/TopBar";
-import SearchBar from "../../components/SearchBar";
-import Cards from "../../components/Cards/index";
+import Intro from "../../components/Intro";
+
 
 const Home = () => {
+  
   return (
     <>
       <Topbar />
-      <SearchBar />
-      <Cards />
+
+      <Intro/>
     </>
   );
 };

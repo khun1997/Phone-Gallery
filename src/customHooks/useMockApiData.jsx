@@ -22,7 +22,7 @@ function useMockApiData() {
     };
     fetchData();
   },[url]);
-  console.log(products);
+  
 
   return products;
 }
