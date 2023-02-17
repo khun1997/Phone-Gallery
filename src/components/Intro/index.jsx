@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useState } from "react";
+import React, { useState,useMemo} from "react";
 import useMockApiData from "../../customHooks/useMockApiData";
 import { Link } from "react-router-dom";
 import { faCircleInfo } from "@fortawesome/free-solid-svg-icons";
@@ -99,19 +99,27 @@ const Button = styled.button`
 const Intro = () => {
   const products = useMockApiData();
   console.log(products);
-  const [search,setSearch] = useState("");
-  
-    
-const handleInputChange = (e) =>
-setSearch(e.target.value)
-console.log(search)
 
+  const [search, setSearch] = useState("");
 
+  const handleInputChange = (e) => setSearch(e.target.value);
+  console.log(search);
+
+  const memoizedValue = useMemo(() => products
+            .filter((product) =>
+              search.toLowerCase() === ""
+                ? products
+                : product.name.toLowerCase().includes(search)), [search,products]);
+      
   return (
     <>
       <div>
         <SearchBox>
-          <Input placeholder="              Search" type="text" onChange={handleInputChange}></Input>
+          <Input
+            placeholder="              Search"
+            type="text"
+            onChange={handleInputChange}
+          ></Input>
           <ButtonSearch type="submit">
             <FontAwesomeIcon icon={faMagnifyingGlass} size="lg" />
           </ButtonSearch>
@@ -119,26 +127,24 @@ console.log(search)
       </div>
       <div>
         <Section>
-          {products.filter((product)=>
-          
-          (search.toLowerCase() === ''? products :product.name.toLowerCase().includes(search)))
-          .map((product) => (
-            <Card key={product.id}>
-              <Image src={product.img} alt=""></Image>
-              <Text>
-                {product.name} ({product.rom})
-              </Text>
-              <br></br>
-              <Text1>{product.price}</Text1>
-              <Link to={`/product/${product.id}`}>
-                <>
-                  <Button>
-                    <FontAwesomeIcon icon={faCircleInfo} size="2xl" />
-                  </Button>
-                </>
-              </Link>
-            </Card>
-          ))}
+          {
+            memoizedValue.map((product) => (
+              <Card key={product.id}>
+                <Image src={product.img} alt=""></Image>
+                <Text>
+                  {product.name} ({product.rom})
+                </Text>
+                <br></br>
+                <Text1>{product.price}</Text1>
+                <Link to={`/product/${product.id}`}>
+                  <>
+                    <Button>
+                      <FontAwesomeIcon icon={faCircleInfo} size="2xl" />
+                    </Button>
+                  </>
+                </Link>
+              </Card>
+            ))}
         </Section>
       </div>
     </>
