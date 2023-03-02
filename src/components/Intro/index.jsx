@@ -1,10 +1,14 @@
 import styled from "styled-components";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useState,useMemo} from "react";
+import React, { useState, useMemo, useContext } from "react";
 import useMockApiData from "../../customHooks/useMockApiData";
 import { Link } from "react-router-dom";
 import { faCircleInfo } from "@fortawesome/free-solid-svg-icons";
+import { faCartPlus } from "@fortawesome/free-solid-svg-icons";
+import { CartContext } from "../../Context/cartContext";
+// import { CartContext } from "../../Context/cartContext";
+
 const SearchBox = styled.form`
   width: 100%;
   height: 6em;
@@ -43,6 +47,8 @@ const Section = styled.section`
   display: flex;
   flex-wrap: wrap;
   margin: 2em;
+  height: 80vh;
+  z-index: 1;
 `;
 const Card = styled.div`
     margin:1em;
@@ -89,28 +95,51 @@ const Text1 = styled.text`
 
 const Button = styled.button`
   border: none;
+
   color: #3f3b3b;
   position: absolute;
   background-color: white;
   top: 0;
+  left: 0;
+  cursor: pointer;
+`;
+const ButtonCart = styled.button`
+  width: 50px;
+  height: 35px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  color: white;
+  position: absolute;
+  background-color: #3f3b3b;
+  /* top: 0;
+  right: 0; */
+  margin-top: -113px;
+  margin-right: 2px;
+
   right: 0;
   cursor: pointer;
 `;
 const Intro = () => {
   const products = useMockApiData();
-  console.log(products);
 
   const [search, setSearch] = useState("");
+  const { addToCart } = useContext(CartContext);
 
   const handleInputChange = (e) => setSearch(e.target.value);
-  console.log(search);
 
-  const memoizedValue = useMemo(() => products
-            .filter((product) =>
-              search.toLowerCase() === ""
-                ? products
-                : product.name.toLowerCase().includes(search)), [search,products]);
-      
+  const memoizedValue = useMemo(
+    () =>
+      products.filter((product) =>
+        search.toLowerCase() === ""
+          ? products
+          : product.name.toLowerCase().includes(search)
+      ),
+    [search, products]
+  );
+
   return (
     <>
       <div>
@@ -127,24 +156,26 @@ const Intro = () => {
       </div>
       <div>
         <Section>
-          {
-            memoizedValue.map((product) => (
-              <Card key={product.id}>
-                <Image src={product.img} alt=""></Image>
-                <Text>
-                  {product.name} ({product.rom})
-                </Text>
-                <br></br>
-                <Text1>{product.price}</Text1>
-                <Link to={`/product/${product.id}`}>
-                  <>
-                    <Button>
-                      <FontAwesomeIcon icon={faCircleInfo} size="2xl" />
-                    </Button>
-                  </>
-                </Link>
-              </Card>
-            ))}
+          {memoizedValue.map((product, id) => (
+            <Card key={product.id}>
+              <Image src={product.image} alt=""></Image>
+              <Text>
+                {product.name} ({product.rom})
+              </Text>
+              <br></br>
+              <Text1>{product.price}</Text1>
+              <Link to={`/product/${product.id}`}>
+                <>
+                  <Button>
+                    <FontAwesomeIcon icon={faCircleInfo} size="2xl" />
+                  </Button>
+                </>
+              </Link>
+              <ButtonCart onClick={() => addToCart(product,id)}>
+                <FontAwesomeIcon icon={faCartPlus} size="xl" />
+              </ButtonCart>
+            </Card>
+          ))}
         </Section>
       </div>
     </>

@@ -22,14 +22,11 @@ import React from "react";
 import Topbar from "../../components/TopBar";
 import Intro from "../../components/Intro";
 
-
 const Home = () => {
-  
   return (
     <>
       <Topbar />
-
-      <Intro/>
+      <Intro />
     </>
   );
 };

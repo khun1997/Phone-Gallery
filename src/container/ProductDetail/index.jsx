@@ -68,12 +68,12 @@ import { mobile } from "../../responsive";
 
 const Loading = styled.h1`
   font-size: 4e;
-  height:100vh;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  align-content:center;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
 `;
 const HeadText = styled.text`
   background-color: #3f3b3b;
@@ -111,9 +111,11 @@ const Image = styled.img`
   height: 500px;
   border: 4px solid white;
   border-radius: 20px;
-  ${mobile({marginTop:"-160px",width:"300px",height:"300px"})}
-
-  /* margin-left:10em; */
+  ${mobile({
+    marginTop: "-160px",
+    width: "300px",
+    height: "300px",
+  })}/* margin-left:10em; */
 `;
 const TextContainer = styled.div`
   /* background-color: pink; */
@@ -128,20 +130,20 @@ const ProductName = styled.text`
   font-size: 60px;
   margin-top: 10px;
   font-style: Sans-serif;
-  ${mobile({ fontSize: "40px"})}
+  ${mobile({ fontSize: "40px" })}
 `;
 
 const ProductPrice = styled.text`
   font-size: 30px;
   margin-top: 40px;
-  ${mobile({ fontSize: "20px", marginTop: "5px"})}
+  ${mobile({ fontSize: "20px", marginTop: "5px" })}
 `;
 
 const ProductSpecification = styled.text`
   padding: 10px;
   margin: 20px 0px;
   font-style: italic;
-  ${mobile({ fontSize:"15px",width:'350px'})}
+  ${mobile({ fontSize: "15px", width: "350px" })}
 `;
 
 const Button = styled.button`
@@ -153,22 +155,22 @@ const Button = styled.button`
   justify-content: center;
   border: 3px solid #3f3b3b;
   border-radius: 10px;
-  
+
   &:hover {
     background-color: #3f3b3b;
     color: white;
   }
 `;
 function ProductDetail() {
-  const url = "https://82e98200-be5c-42f0-94ed-c1d4e32c4d1a.mock.pstmn.io";
+  const url = "https://f6ff7d63-5ec3-4d2f-9304-97bdddc11461.mock.pstmn.io";
 
   const products = useMockApiData(url);
-  console.log(products);
 
   const { id } = useParams();
-  console.log(id);
+
+
   const product = products.find((product) => product.id == id);
-  console.log(product);
+
   if (products.length === 0) {
     return <Loading>Loading . . . . . .</Loading>;
   }
@@ -178,7 +180,7 @@ function ProductDetail() {
       <HeadText>Product Detail</HeadText>
       <Section>
         <ProductContainer key={product.id}>
-          <Image src={product.img} alt={product.name}></Image>
+          <Image src={product.image} alt={product.name}></Image>
           <TextContainer>
             <ProductName>{product.name}</ProductName>
             <ProductPrice>Price : {product.price}</ProductPrice>

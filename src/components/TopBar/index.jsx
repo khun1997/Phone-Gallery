@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Offconvas from "../Offcanvas";
+import { faCartPlus } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { OffconvasContext } from "../../Context/offconvasContext";
 
 const Top = styled.section`
   width: 100%;
@@ -31,18 +34,18 @@ const Button = styled.button`
   border: none;
   background: #3f3b3b;
   color: white;
-  font-size: 1em;
+  font-size: 16px;
   cursor: pointer;
   margin: 0em 1em;
   text-decoration: none;
 `;
+
 const Topbar = () => {
+  const { openOffconvasHandle } = useContext(OffconvasContext);
   return (
     <div>
       <Top>
-        <Title>
-          <h3>Phone-Gallery </h3>
-        </Title>
+        <Title>Phone-Gallery</Title>
         <Navbar>
           <NavLink to="/">
             <Button>Home</Button>
@@ -51,11 +54,13 @@ const Topbar = () => {
           <NavLink to="/about">
             <Button>About</Button>
           </NavLink>
-          <NavLink to="/totalamount">
-            <Button>Total Amount</Button>
-          </NavLink>
+
+          <Button onClick={openOffconvasHandle}>
+            <FontAwesomeIcon icon={faCartPlus} size="2xl" />
+          </Button>
         </Navbar>
       </Top>
+      <Offconvas></Offconvas>
     </div>
   );
 };
