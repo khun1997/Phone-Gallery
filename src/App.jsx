@@ -2,9 +2,6 @@ import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./container/Home/index";
 import ProductDetail from "./container/ProductDetail/index";
-// import About from './container/About/index';
-// import TotalAmount from './container/TotalAmount/index';
-// import ProjectDetail from './container/ProjectDetail/index';
 
 function App() {
   return (
