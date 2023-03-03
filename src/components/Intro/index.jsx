@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { faCircleInfo } from "@fortawesome/free-solid-svg-icons";
 import { faCartPlus } from "@fortawesome/free-solid-svg-icons";
 import { CartContext } from "../../Context/cartContext";
+import { OffconvasContext } from "../../Context/offconvasContext";
 // import { CartContext } from "../../Context/cartContext";
 
 const SearchBox = styled.form`
@@ -95,7 +96,6 @@ const Text1 = styled.text`
 
 const Button = styled.button`
   border: none;
-
   color: #3f3b3b;
   position: absolute;
   background-color: white;
@@ -114,16 +114,14 @@ const ButtonCart = styled.button`
   color: white;
   position: absolute;
   background-color: #3f3b3b;
-  /* top: 0;
-  right: 0; */
   margin-top: -113px;
   margin-right: 2px;
-
   right: 0;
   cursor: pointer;
 `;
 const Intro = () => {
   const products = useMockApiData();
+  const { openOffconvasHandle } = useContext(OffconvasContext);
 
   const [search, setSearch] = useState("");
   const { addToCart } = useContext(CartContext);
@@ -171,7 +169,9 @@ const Intro = () => {
                   </Button>
                 </>
               </Link>
-              <ButtonCart onClick={() => addToCart(product,id)}>
+              <ButtonCart
+                onClick={() => addToCart(product, id) & openOffconvasHandle()}
+              >
                 <FontAwesomeIcon icon={faCartPlus} size="xl" />
               </ButtonCart>
             </Card>

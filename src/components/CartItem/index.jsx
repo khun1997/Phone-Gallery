@@ -28,9 +28,8 @@ const Container = styled.div`
   top: 0;
   right: 0;
   background-color: #ffffff;
-  position: fixed;
+  position: absolute;
   z-index: 2;
-  transition: all 5s ease-out;
 `;
 const CartTitileContainer = styled.div`
   width: 600px;
@@ -54,25 +53,18 @@ const CloseButton = styled.button`
   color: #ffffff;
   background-color: #3f3b3b;
 `;
+
 const Wrapper = styled.div`
   display: flex;
-  margin: 10px;
 `;
-
-const LeftContiner = styled.div`
+const LeftContainer = styled.div`
   width: 300px;
   display: flex;
   align-content: center;
   justify-content: center;
   align-items: center;
 `;
-// const Image = styled.image`
-//   /* background-color: red;
-//   width: 200px;
-//   height: 200px; */
-// `;
-
-const RightContiner = styled.div`
+const RightContainer = styled.div`
   width: 300px;
   display: flex;
   flex-flow: column wrap;
@@ -108,44 +100,46 @@ const Amount = styled.span`
 
 const CartItem = () => {
   const { closeHandle } = useContext(OffconvasContext);
-  const { product } = useContext(CartContext);
-
-  if (product.length === 0) {
+  const { cartItem } = useContext(CartContext);
+  console.log(cartItem);
+  if (cartItem.length === 0) {
     return <Loading>Loading . . . . . .</Loading>;
   }
 
   return (
-    <div>
-      <Container>
-        <CartTitileContainer>
-          <CartTitle>
-            Cart Items
-            <CloseButton onClick={closeHandle}>
-              <FontAwesomeIcon icon={faXmark} size="2xl" />
-            </CloseButton>
-          </CartTitle>
-        </CartTitileContainer>
-        <Wrapper>
-          <LeftContiner>
-            {/* <Image src={product.image} alt=""/> */}
-            <img src={product.image} alt="" width={300} />
-          </LeftContiner>
-          <RightContiner>
-            <ProductName>{product.name}</ProductName>
-            <ProductRom>({product.rom})</ProductRom>
-            <ProductPrice>{product.price}</ProductPrice>
-
-            <ProductLimit>
-              <FontAwesomeIcon icon={faCircleArrowLeft} size="xl" />
-              <Limit>4</Limit>
-              <FontAwesomeIcon icon={faCircleArrowRight} size="xl" />
-            </ProductLimit>
-            <Amount> Cost : {product.price}</Amount>
-          </RightContiner>
-        </Wrapper>
-        <hr></hr>
-      </Container>
-    </div>
+    <Container>
+      <CartTitileContainer>
+        <CartTitle>
+          Cart Items
+          <CloseButton onClick={closeHandle}>
+            <FontAwesomeIcon icon={faXmark} size="2xl" />
+          </CloseButton>
+        </CartTitle>
+      </CartTitileContainer>
+      {cartItem.map((item) => {
+        return (
+          <div key={item.id}>
+            <Wrapper>
+              <LeftContainer>
+                <img src={item.image} width={300} alt="" />
+              </LeftContainer>
+              <RightContainer>
+                <ProductName>{item.name}</ProductName>
+                <ProductRom>({item.rom})</ProductRom>
+                <ProductPrice>{item.price}</ProductPrice>
+                <ProductLimit>
+                  <FontAwesomeIcon icon={faCircleArrowLeft} size="xl" />
+                  <Limit>4</Limit>
+                  <FontAwesomeIcon icon={faCircleArrowRight} size="xl" />
+                </ProductLimit>
+                <Amount> Cost : {item.price}</Amount>
+              </RightContainer>
+            </Wrapper>
+            <hr></hr>
+          </div>
+        );
+      })}
+    </Container>
   );
 };
 
