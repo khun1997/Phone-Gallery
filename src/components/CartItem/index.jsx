@@ -8,28 +8,35 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { OffconvasContext } from "../../Context/offconvasContext";
 import { CartContext } from "../../Context/cartContext";
 
-const Loading = styled.h1`
-  font-size: 4e;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
-  transition: all 0.5s ease-out;
-`;
+// const Loading = styled.h1`
+//   font-size: 4e;
+//   height: 100vh;
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   align-items: center;
+//   align-content: center;150vh
+//   transition: all 0.5s ease-out;
+// `;
 
 const Container = styled.div`
-  background-color: red;
   width: 600px;
-  height: 100vh;
+  height: 130vh;
   margin: 0;
   padding: 0;
   top: 0;
-  right: 0;
-  background-color: #ffffff;
+  right: -660px;
+  background-color: #3f3b3b;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   position: absolute;
   z-index: 2;
+  transform: translateX(100%);
+  transition: all 2s 1s;
+
+  &.click {
+    right: 0px;
+    transform: translateX(0);
+  }
 `;
 const CartTitileContainer = styled.div`
   width: 600px;
@@ -53,9 +60,20 @@ const CloseButton = styled.button`
   color: #ffffff;
   background-color: #3f3b3b;
 `;
+const NoItem = styled.span`
+  width: 600px;
+  height: 80vh;
+  font-size: 2em;
+  color: #ffffff;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+`;
 
 const Wrapper = styled.div`
   display: flex;
+  margin-top: 10px;
 `;
 const LeftContainer = styled.div`
   width: 300px;
@@ -63,6 +81,8 @@ const LeftContainer = styled.div`
   align-content: center;
   justify-content: center;
   align-items: center;
+  background-color: #3f3b3b;
+  margin-left: 10px;
 `;
 const RightContainer = styled.div`
   width: 300px;
@@ -75,39 +95,50 @@ const RightContainer = styled.div`
 const ProductName = styled.span`
   font-size: 30px;
   font-weight: bold;
-  color: #3f3b3b;
+  color: #ffffff;
 `;
 const ProductRom = styled.span`
-  color: #3f3b3b;
-  font-size: 20px;
+  color: #ffffff;
+  font-size: 17px;
 `;
 const ProductPrice = styled.span`
-  color: #3f3b3b;
-  font-size: 25px;
+  color: #ffffff;
+  font-size: 20px;
 `;
 const ProductLimit = styled.span`
-  color: #3f3b3b;
-  font-size: 20px;
+  color: #ffffff;
+  font-size: 17px;
 `;
 const Limit = styled.span`
-  margin: 0 20px;
-  color: #3f3b3b;
+  margin: 0 17px;
+  color: #ffffff;
 `;
 const Amount = styled.span`
-  color: #3f3b3b;
-  font-size: 20px;
+  color: #ffffff;
+  font-size: 17px;
 `;
-
+const TotalSummary = styled.div`
+  font-size: 21px;
+  font-weight: bold;
+  width: 600px;
+  height: 4em;
+  margin-top: 20px;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+  color: #3f3b3b;
+`;
 const CartItem = () => {
   const { closeHandle } = useContext(OffconvasContext);
-  const { cartItem } = useContext(CartContext);
-  console.log(cartItem);
-  if (cartItem.length === 0) {
-    return <Loading>Loading . . . . . .</Loading>;
-  }
-
+  const { cartItem, decreaseQty, addToCart } = useContext(CartContext);
+  const totalSummaryPrice = cartItem.reduce(
+    (price, item) => price + item.qty * item.price,
+    0
+  );
   return (
-    <Container>
+    <Container className="click">
       <CartTitileContainer>
         <CartTitle>
           Cart Items
@@ -116,29 +147,44 @@ const CartItem = () => {
           </CloseButton>
         </CartTitle>
       </CartTitileContainer>
+      <hr />
+
+      {cartItem.length === 0 && <NoItem>No items in the cart!</NoItem>}
       {cartItem.map((item) => {
+        const totoalPrice = item.price * item.qty;
+
         return (
           <div key={item.id}>
             <Wrapper>
               <LeftContainer>
-                <img src={item.image} width={300} alt="" />
+                <img src={item.image} width={170} alt="" />
               </LeftContainer>
               <RightContainer>
                 <ProductName>{item.name}</ProductName>
                 <ProductRom>({item.rom})</ProductRom>
-                <ProductPrice>{item.price}</ProductPrice>
+                <ProductPrice>{item.price}MMK</ProductPrice>
                 <ProductLimit>
-                  <FontAwesomeIcon icon={faCircleArrowLeft} size="xl" />
-                  <Limit>4</Limit>
-                  <FontAwesomeIcon icon={faCircleArrowRight} size="xl" />
+                  <FontAwesomeIcon
+                    onClick={() => decreaseQty(item)}
+                    icon={faCircleArrowLeft}
+                    size="xl"
+                  />
+
+                  <Limit>{item.qty}</Limit>
+                  <FontAwesomeIcon
+                    onClick={() => addToCart(item)}
+                    icon={faCircleArrowRight}
+                    size="xl"
+                  />
                 </ProductLimit>
-                <Amount> Cost : {item.price}</Amount>
+                <Amount> Total : {totoalPrice}MMK</Amount>
               </RightContainer>
             </Wrapper>
             <hr></hr>
           </div>
         );
       })}
+      <TotalSummary>Total Summary Price : {totalSummaryPrice} MMK</TotalSummary>
     </Container>
   );
 };

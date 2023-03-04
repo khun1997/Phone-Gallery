@@ -8,7 +8,20 @@ import { faCircleInfo } from "@fortawesome/free-solid-svg-icons";
 import { faCartPlus } from "@fortawesome/free-solid-svg-icons";
 import { CartContext } from "../../Context/cartContext";
 import { OffconvasContext } from "../../Context/offconvasContext";
+import Offconvas from "../Offcanvas";
+
 // import { CartContext } from "../../Context/cartContext";
+
+const Loading = styled.h1`
+  font-size: 4e;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;150vh
+  transition: all 0.5s ease-out;
+`;
 
 const SearchBox = styled.form`
   width: 100%;
@@ -48,7 +61,7 @@ const Section = styled.section`
   display: flex;
   flex-wrap: wrap;
   margin: 2em;
-  height: 80vh;
+  height: 100vh;
   z-index: 1;
 `;
 const Card = styled.div`
@@ -137,6 +150,9 @@ const Intro = () => {
       ),
     [search, products]
   );
+  if (products.length === 0) {
+    return <Loading>loading...</Loading>;
+  }
 
   return (
     <>
@@ -152,6 +168,7 @@ const Intro = () => {
           </ButtonSearch>
         </SearchBox>
       </div>
+      <Offconvas></Offconvas>
       <div>
         <Section>
           {memoizedValue.map((product, id) => (
@@ -161,7 +178,7 @@ const Intro = () => {
                 {product.name} ({product.rom})
               </Text>
               <br></br>
-              <Text1>{product.price}</Text1>
+              <Text1>{product.price}MMK</Text1>
               <Link to={`/product/${product.id}`}>
                 <>
                   <Button>

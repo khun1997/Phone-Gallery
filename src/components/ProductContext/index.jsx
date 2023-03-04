@@ -46,7 +46,7 @@
 //   // const {data ,isLoading} = useContext(DataContext);
 //   const [products, setProducts] = useState([]);
 //   useEffect(() => {
-    
+
 //     setProducts(products);
 //   }, []);
 

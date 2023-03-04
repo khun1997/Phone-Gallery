@@ -5,19 +5,14 @@ function useMockApiData() {
 
   const [products, setProducts] = useState([]);
 
-
   useEffect(() => {
-
     const fetchData = async () => {
-
-        const response = await fetch(url);
-        const data = await response.json();
-        setProducts(data);
-     
+      const response = await fetch(url);
+      const data = await response.json();
+      setProducts(data);
     };
     fetchData();
-  },[url]);
-  
+  }, [url]);
 
   return products;
 }

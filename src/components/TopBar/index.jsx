@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
-import Offconvas from "../Offcanvas";
 import { faCartPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { OffconvasContext } from "../../Context/offconvasContext";
@@ -55,12 +54,11 @@ const Topbar = () => {
             <Button>About</Button>
           </NavLink>
 
-          <Button onClick={openOffconvasHandle}>
+          <Button onClick={() => openOffconvasHandle()}>
             <FontAwesomeIcon icon={faCartPlus} size="2xl" />
           </Button>
         </Navbar>
       </Top>
-      <Offconvas></Offconvas>
     </div>
   );
 };
